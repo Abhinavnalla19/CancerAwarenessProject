@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cancer Awareness & Support</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-color: #f5f6fa;
+      color: #333;
+    }
+
+    header {
+      background: linear-gradient(to right, #ff7b89, #ffb6b9);
+      color: white;
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      font-size: 1.2rem;
+    }
+
+    .banner {
+      width: 100%;
+      height: 300px;
+      background: url('https://images.unsplash.com/photo-1588776814546-46e67c105b9e?auto=format&fit=crop&w=1500&q=80') center/cover;
+      margin: 20px 0;
+      border-radius: 10px;
+    }
+
+    .quote-section {
+      text-align: center;
+      padding: 30px 20px;
+    }
+
+    .quote-box {
+      background: #ffe5ec;
+      border-radius: 10px;
+      padding: 20px;
+      display: inline-block;
+      max-width: 500px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .quote-box p {
+      font-style: italic;
+      margin-bottom: 10px;
+    }
+
+    .quote-box button {
+      background-color: #ff7b89;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .contact {
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    form {
+      max-width: 400px;
+      margin: 0 auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button[type="submit"] {
+      background-color: #ff7b89;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    footer {
+      background-color: #ff7b89;
+      color: white;
+      text-align: center;
+      padding: 15px 0;
+      margin-top: 30px;
+    }
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2rem;
+      }
+      .banner {
+        height: 200px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Cancer Awareness & Support</h1>
+    <p>Together we can fight cancer with love, hope, and awareness.</p>
+  </header>
+
+  <div class="banner"></div>
+
+  <section class="quote-section">
+    <h2>Inspiring Quote</h2>
+    <div class="quote-box">
+      <p id="quote">Loading quote...</p>
+      <button onclick="fetchQuote()">Refresh Quote</button>
+    </div>
+  </section>
+
+  <section class="contact">
+    <h2>Contact Us</h2>
+    <form onsubmit="submitForm(event)">
+      <input type="text" id="name" placeholder="Your Name" required>
+      <input type="email" id="email" placeholder="Your Email" required>
+      <textarea id="message" rows="4" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Cancer Awareness & Support | Spreading Hope Together</p>
+  </footer>
+
+  <script>
+    async function fetchQuote() {
+      try {
+        const res = await fetch('https://api.quotable.io/random');
+        const data = await res.json();
+        document.getElementById('quote').innerText = data.content;
+      } catch (error) {
+        document.getElementById('quote').innerText = 'Could not load quote. Try again later.';
+      }
+    }
+
+    function submitForm(e) {
+      e.preventDefault();
+      alert('Thank you for reaching out! Your message has been received.');
+      e.target.reset();
+    }
+
+    // Load initial quote
+    fetchQuote();
+  </script>
+
+</body>
+</html>
